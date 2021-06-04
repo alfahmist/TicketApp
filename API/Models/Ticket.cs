@@ -10,10 +10,11 @@ namespace API.Models
     public class Ticket
     {
         public int ID { get; set; }
-        public int Status { get; set; }
-        public int Category { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ClosedDate { get; set; }
+        public ICollection<Ticket> Tickets { get; set; }
+        public Status Status { get; set; }
+        public Category Category { get; set; }
 
         public Ticket()
         {
