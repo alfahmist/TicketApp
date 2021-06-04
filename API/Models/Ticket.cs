@@ -12,7 +12,7 @@ namespace API.Models
         public int ID { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ClosedDate { get; set; }
-        public ICollection<Ticket> Tickets { get; set; }
+        public ICollection<TicketMessage> TicketMessage { get; set; }
         public Status Status { get; set; }
         public Category Category { get; set; }
 
