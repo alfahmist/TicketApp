@@ -21,7 +21,35 @@ namespace API.Context
         public DbSet<TicketMessage> TicketMessages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Ticket - Status
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.Category)
+                .WithMany(c => c.Tickets);
 
+            // Ticket - Category
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.Status)
+                .WithMany(s => s.Tickets);
+
+            // Ticket - TicketMessage
+            modelBuilder.Entity<Ticket>()
+                .HasMany(t => t.TicketMessage)
+                .WithOne(tm => tm.Ticket);
+            
+            // Ticket - Message
+            modelBuilder.Entity<TicketMessage>()
+                .HasOne(tm => tm.Messages)
+                .WithMany(m => m.TicketMessages);
+
+            // Message - Employee
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Employee)
+                .WithMany(e => e.Messages);
+
+            // Employee - Role
+            modelBuilder.Entity<Employee>()
+                .HasOne(e => e.Role)
+                .WithMany(r => r.Employees);
         }
     }
 }
