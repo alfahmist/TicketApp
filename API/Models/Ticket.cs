@@ -9,16 +9,11 @@ namespace API.Models
     [Table("TB_M_Ticket")]
     public class Ticket
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ClosedDate { get; set; }
-        public ICollection<TicketMessage> TicketMessage { get; set; }
-        public Status Status { get; set; }
+        public ICollection<Message> Message { get; set; }
+        public ICollection<StatusHistory> StatusHistories { get; set; }
         public Category Category { get; set; }
-
-        public Ticket()
-        {
-            this.CreatedDate = DateTime.Now;
-        }
     }
 }
