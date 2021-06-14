@@ -11,6 +11,6 @@ namespace API.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public ICollection<Ticket> Tickets { get; set; }
+        public ICollection<StatusHistory> StatusHistories { get; set; }
     }
 }
