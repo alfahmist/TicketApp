@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace API.Repositories.Datas
 {
-    public class TicketRepository : GeneralRepository<Ticket, MyContext, int>
+    public class TicketRepository : GeneralRepository<Ticket, MyContext, string>
     {
         private readonly MyContext myContext;
 
