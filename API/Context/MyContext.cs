@@ -23,13 +23,8 @@ namespace API.Context
         {
 
             // key 
-            // Message
-            modelBuilder.Entity<Message>()
-                .HasKey(m => new { m.Ticket, m.Employee, m.ID });
-
-            // StatusHistory
-            modelBuilder.Entity<StatusHistory>()
-                .HasKey(sh => new { sh.Ticket, sh.Status });
+            modelBuilder.Entity<Employee>()
+                .HasAlternateKey(e => e.Email);
 
             // Ticket - Category
             modelBuilder.Entity<Ticket>()
@@ -42,7 +37,7 @@ namespace API.Context
                   .WithMany(t => t.StatusHistories)
                   .OnDelete(DeleteBehavior.Cascade);
 
-            // StatusHistory - Ticket
+            // StatusHistory - Status
             modelBuilder.Entity<StatusHistory>()
                   .HasOne(sh => sh.Status)
                   .WithMany(s => s.StatusHistories)
@@ -64,6 +59,7 @@ namespace API.Context
             modelBuilder.Entity<Employee>()
                   .HasOne(e => e.Role)
                   .WithMany(r => r.Employees);
+        
         }
     }
 }
