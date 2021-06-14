@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace API.Repositories.Datas
 {
-    public class EmployeeRepository : GeneralRepository<Employee, MyContext, string>
+    public class StatusHistoryRepository : GeneralRepository<StatusHistory, MyContext, int>
     {
         private readonly MyContext myContext;
 
-        public EmployeeRepository(MyContext myContext) : base(myContext)
+        public StatusHistoryRepository(MyContext myContext) : base(myContext)
         {
 
         }
