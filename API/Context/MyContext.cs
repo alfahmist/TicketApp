@@ -17,39 +17,53 @@ namespace API.Context
         public DbSet<Message> Messages { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<StatusHistory> StatusHistory { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<TicketMessage> TicketMessages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Ticket - Status
-            modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.Category)
-                .WithMany(c => c.Tickets);
+
+            // key 
+            // Message
+            modelBuilder.Entity<Message>()
+                .HasKey(m => new { m.Ticket, m.Employee, m.ID });
+
+            // StatusHistory
+            modelBuilder.Entity<StatusHistory>()
+                .HasKey(sh => new { sh.Ticket, sh.Status });
 
             // Ticket - Category
             modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.Status)
-                .WithMany(s => s.Tickets);
+                .HasOne(t => t.Category)
+                .WithMany(c => c.Tickets);
+                
+            // StatusHistory - Ticket
+            modelBuilder.Entity<StatusHistory>()
+                  .HasOne(st => st.Ticket)
+                  .WithMany(t => t.StatusHistories)
+                  .OnDelete(DeleteBehavior.Cascade);
 
-            // Ticket - TicketMessage
-            modelBuilder.Entity<Ticket>()
-                .HasMany(t => t.TicketMessage)
-                .WithOne(tm => tm.Ticket);
-            
-            // Ticket - Message
-            modelBuilder.Entity<TicketMessage>()
-                .HasOne(tm => tm.Messages)
-                .WithMany(m => m.TicketMessages);
+            // StatusHistory - Ticket
+            modelBuilder.Entity<StatusHistory>()
+                  .HasOne(sh => sh.Status)
+                  .WithMany(s => s.StatusHistories)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            // Message - Ticket
+            modelBuilder.Entity<Message>()
+                  .HasOne(m => m.Ticket)
+                  .WithMany(t => t.Messages)
+                  .OnDelete(DeleteBehavior.Cascade);
 
             // Message - Employee
             modelBuilder.Entity<Message>()
-                .HasOne(m => m.Employee)
-                .WithMany(e => e.Messages);
+                  .HasOne(m => m.Employee)
+                  .WithMany(e => e.Messages)
+                  .OnDelete(DeleteBehavior.Cascade);
 
             // Employee - Role
             modelBuilder.Entity<Employee>()
-                .HasOne(e => e.Role)
-                .WithMany(r => r.Employees);
+                  .HasOne(e => e.Role)
+                  .WithMany(r => r.Employees);
         }
     }
 }
