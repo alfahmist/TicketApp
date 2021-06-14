@@ -24,7 +24,8 @@ namespace API.Context
 
             // key 
             modelBuilder.Entity<Employee>()
-                .HasAlternateKey(e => e.Email);
+            .HasIndex(e => e.Email)
+            .IsUnique();
 
             // Ticket - Category
             modelBuilder.Entity<Ticket>()
