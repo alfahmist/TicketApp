@@ -9,10 +9,10 @@ namespace API.Models
     [Table("TB_M_Message")]
     public class Message
     {
-        public int ID { get; set; }
-        public string Content { get; set; }
+        public Ticket Ticket { get; set; }
         public Employee Employee { get; set; }
-        public ICollection<TicketMessage> TicketMessages { get; set; }
-        
+        public int ID { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string Content { get; set; }
     }
 }
