@@ -9,8 +9,8 @@ namespace API.Models
     [Table("TB_T_StatusHistory")]
     public class StatusHistory
     {
-        public Ticket TicketID { get; set; }
-        public Status StatusID { get; set; }
+        public Ticket Ticket { get; set; }
+        public Status Status { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }
