@@ -12,7 +12,7 @@ namespace API.Models
         public string ID { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ClosedDate { get; set; }
-        public ICollection<Message> Message { get; set; }
+        public ICollection<Message> Messages { get; set; }
         public ICollection<StatusHistory> StatusHistories { get; set; }
         public Category Category { get; set; }
     }
