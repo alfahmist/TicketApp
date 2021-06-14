@@ -28,7 +28,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MyContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
+            options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
 
             services.AddControllers();
         }
