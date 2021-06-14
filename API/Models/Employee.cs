@@ -9,7 +9,7 @@ namespace API.Models
     [Table("TB_M_Employee")]
     public class Employee
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
