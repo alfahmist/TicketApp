@@ -12,7 +12,7 @@ namespace API.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TicketsController : BaseController<Ticket, TicketRepository, string>
+    public class TicketsController : BaseController<Ticket, TicketRepository, int>
     {
         TicketRepository repository;
         public TicketsController(TicketRepository repository) : base(repository)
