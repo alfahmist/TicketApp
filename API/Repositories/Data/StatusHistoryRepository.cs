@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Repositories.Datas
+namespace API.Repositories.Data
 {
     public class StatusHistoryRepository : GeneralRepository<StatusHistory, MyContext, int>
     {
