@@ -10,7 +10,6 @@ namespace API.Models
     [Table("TB_T_StatusHistory")]
     public class StatusHistory
     {
-    
         public int ID { get; set; }
         public Ticket Ticket { get; set; }
         public Status Status { get; set; }
